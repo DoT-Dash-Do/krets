@@ -28,7 +28,7 @@ export default function CreatePost() {
     media: [],
     community: params.id
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const [error, setError] = useState("");
   const [desc, setDesc] = useState("Upload your files here");
