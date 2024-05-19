@@ -20,6 +20,7 @@ import Sidebar from "./Sidebar";
 export default function Navbar() {
   const navig = useNavigate();
   const Dispatch = useDispatch();
+  const [search,setSearch] = useState("")
   const [menu, setMenu] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const forwardToLogin = () => {
@@ -30,7 +31,7 @@ export default function Navbar() {
       Dispatch(signOutStart());
       window.localStorage.removeItem("token");
       Dispatch(signOutSuccess());
-      navig("/");
+      navig("/login");
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +45,7 @@ export default function Navbar() {
   return (
     <div className="flex flex-col">
       <div className="bg-white dark:bg-black w-screen border-b border-slate-200 dark:border-[#1f1f1f] p-2 px-4 flex justify-between items-center">
-        <div className="flex items-center gap-2 text-2xl font-bold text-orange-600">
+        <div className="flex items-center gap-2 text-2xl font-bold text-orange-600 select-none">
           {!menu && (
             <button
               className="lg:hidden"
@@ -66,11 +67,11 @@ export default function Navbar() {
             </button>
           )}
           <PlugsConnected />
-          <p>krets</p>
+          <p onClick={()=>navig('/')}>krets</p>
         </div>
         <div className="md:flex w-full hidden max-w-[400px] items-center border rounded-lg">
-          <Input type="text" placeholder="Search" className="border-none" />
-          <Button type="submit" variant="primary">
+          <Input type="text" placeholder="Search" className="border-none" value={search} onChange={(e)=>{setSearch(e.target.value)}}/>
+          <Button type="submit" variant="primary" onClick={()=>{if(search.trim()) navig(`/search/Post/${search}`)}}>
             <MagnifyingGlass size={20} />
           </Button>
         </div>
@@ -94,7 +95,7 @@ export default function Navbar() {
               </Avatar>
               <button
                 title="logout"
-                className="hover:bg-slate-600 p-1 rounded-lg"
+                className="hover:bg-gray-200 dark:hover:bg-slate-600 p-1 rounded-lg"
               >
                 <SignOut size={25} onClick={signOutMain} />
               </button>
@@ -105,7 +106,7 @@ export default function Navbar() {
       </div>
         <div className={`lg:hidden fixed inset-y-0 top-14 left-0 z-10 transform w-screen ${
           menu ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-500 ease-in-out`}>
+        } transition-transform duration-500 ease-in-out`} onClick={()=>{setMenu(false)}}>
           <Sidebar />
       </div>    
     </div>

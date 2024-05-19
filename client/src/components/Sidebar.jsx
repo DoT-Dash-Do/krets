@@ -37,7 +37,7 @@ export default function Sidebar() {
         {currentUser && (
           <Link
             to="/home"
-            className="flex items-start w-full gap-2 p-2 hover:bg-gray-700 rounded-lg"
+            className="flex items-start w-full gap-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
           >
             <House size={24} />
             <p>Home</p>
@@ -45,7 +45,7 @@ export default function Sidebar() {
         )}
         <Link
           to="/"
-          className="flex items-start w-full gap-2 p-2 hover:bg-gray-700 rounded-lg"
+          className="flex items-start w-full gap-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
         >
           <Fire size={24} />
           Popular
@@ -55,7 +55,7 @@ export default function Sidebar() {
         <div className="flex flex-col border-b w-11/12 py-2">
           <Link
             to="/create-community"
-            className="flex items-start w-full gap-2 p-2 hover:bg-gray-700 rounded-lg"
+            className="flex items-start w-full gap-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
           >
             <PlusSquare size={24} />
             Create Community
@@ -67,7 +67,7 @@ export default function Sidebar() {
           {result.map((element, index) => {
             return (
               <div
-                className="flex items-center gap-2 hover:bg-gray-700 p-1 rounded-lg cursor-pointer select-none"
+                className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-lg cursor-pointer select-none"
                 key={index}
                 onClick={() => {navig(`/community/${element._id}`)}}
               >
@@ -88,7 +88,7 @@ export default function Sidebar() {
           {result.map((element, index) => {
             return (
               <div
-                className="flex items-center gap-2 hover:bg-gray-700 p-1 rounded-lg cursor-pointer select-none"
+                className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-lg cursor-pointer select-none"
                 key={index}
                 onClick={() => {navig(`/community/${element.community._id}`)}}
               >

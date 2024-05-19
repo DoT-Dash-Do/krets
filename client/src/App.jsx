@@ -23,6 +23,8 @@ import NotFound from "./pages/NotFound";
 import UserPostAndCommunity from "./pages/UserPostAndCommunity";
 import EditCommunity from "./pages/EditCommunity";
 import axios from "axios";
+import { SinglePost } from "./pages/SinglePost";
+import { Search } from "./pages/Search";
 function App() {
   const location = useLocation();
   const { currentUser } = useSelector((state) => state.user);
@@ -59,10 +61,9 @@ function App() {
       const response = await axios(
         `${serverlink}/community/getTenCommunities`
       );
-      console.log(response.data);
       setResult(response.data);
     } catch (error) {
-      
+      console.log(error);
     }
   }
   useEffect(()=>{
@@ -101,10 +102,12 @@ function App() {
                   </>
                 )}
                 <Route path="/user/:id" element={<UserProfile />} />
+                <Route path="/search/:type/:id" element={<Search/>}/>
                 <Route path="/community/:id" element={<Community />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Popular />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/post/:id" element={<SinglePost/>}/>
               </Routes>
             </div>
             <div className={sugg}>

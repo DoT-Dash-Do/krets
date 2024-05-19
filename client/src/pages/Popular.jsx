@@ -5,7 +5,7 @@ import axios from "axios";
 import { serverlink } from "@/link";
 export default function Popular() {
   const [posts,setPosts] = useState([]);
-  const [loading,setLoading] = useState(false);
+  const [loading,setLoading] = useState(true);
   const fetchPosts=async()=>{
     try {
       setLoading(true);

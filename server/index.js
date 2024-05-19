@@ -1,7 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
 import authRouter from './routes/authRouter.js';
 import userRouter from './routes/userRouter.js';
 import postRouter from './routes/postRoutes.js';
@@ -20,7 +19,6 @@ mongoose.connect(process.env.MONGO_URI,{
 const app = express();
 app.use(CORS());
 app.use(express.json());
-app.use(cookieParser());
 app.use('/api/auth',authRouter);
 app.use('/api/user',userRouter);
 app.use('/api/post',postRouter);

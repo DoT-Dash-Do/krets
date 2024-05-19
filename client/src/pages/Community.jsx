@@ -15,7 +15,7 @@ export default function Community() {
   const [about, setAbout] = useState("");
   const [follow, setFollow] = useState(false);
   const [fload, setfload] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [admin, setAdmin] = useState("");
   const [postLoad, setPostLoad] = useState(false);
@@ -97,7 +97,7 @@ export default function Community() {
     getCommunityDetails();
     getCommunityPosts();
     checkFollow();
-  }, []);
+  }, [params]);
   const getCommunityPosts = async () => {
     try {
       setPostLoad(true);

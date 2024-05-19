@@ -213,7 +213,7 @@ export default function Login() {
       const {token,...rest} = response.data;
       window.localStorage.setItem('token',token);
       Dispatch(signInSuccess(rest));
-      navig("/home");
+      navig("/");
     } catch (err) {
       console.log(err);
       Dispatch(signInFailure(err.response.data.message));

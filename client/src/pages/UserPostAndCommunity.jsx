@@ -21,7 +21,7 @@ export default function UserPostAndCommunity() {
   const params = useParams();
   const buttonRef = useRef(null);
   const navig = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [postLoad, setPostLoad] = useState(false);
   const [posts, setPosts] = useState([]);
   const [communities, setCommunities] = useState([]);

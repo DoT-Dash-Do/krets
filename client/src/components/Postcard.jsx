@@ -14,12 +14,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import { PlugsConnected, ChatCentered, ShareFat } from "@phosphor-icons/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
 export const Postcard = ({ Post }) => {
   const navig = useNavigate();
   return (
-    <div className="border-b w-full py-2">
+    <div className="border-b w-full py-2 relative">
       <Card className="border-none shadow-none hover:bg-gray-200 dark:hover:bg-black">
         <CardHeader className="flex-row gap-2">
           <Avatar
@@ -30,10 +41,7 @@ export const Postcard = ({ Post }) => {
           >
             <AvatarImage
               className="object-cover"
-              src={
-                Post.community.avatar ||
-                "/klogo.png"
-              }
+              src={Post.community.avatar || "/klogo.png"}
               alt="@shadcn"
             />
             <AvatarFallback>k/</AvatarFallback>
@@ -82,6 +90,40 @@ export const Postcard = ({ Post }) => {
             </Carousel>
           )}
         </CardContent>
+        <CardFooter className="bg-grey flex justify-between">
+          <div className="flex gap-1 sm:gap-4 sm:w-1/2 justify-between">
+            <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer text-sm sm:text-xl">
+              <PlugsConnected className="hover:text-orange-600" size={32} onClick={()=>{navig(`/post/${Post._id}`)}} />
+              <p>{Post.totalLikes}</p>
+            </div>
+            <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer">
+              <ChatCentered size={32} onClick={()=>{navig(`/post/${Post._id}`)}} className="hover:text-orange-600" />
+              <p className="text-sm sm:text-xl">{Post.totalComments}</p>
+            </div>
+            <div className="flex items-center absolute top-9 right-4 sm:relative sm:top-0 sm:right-0">
+              <Dialog>
+                <DialogTrigger className="text-center">
+                  <ShareFat size={32} className="hover:text-orange-600"/>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Shareable-Link</DialogTitle>
+                    <DialogDescription>
+                      <Input value={`http://localhost:5173/post/${Post._id}`} />
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+          <div className="flex justify-end w-full truncate">
+            <Link to={`/user/${Post.user._id}`} className="text-sm sm:text-lg">
+              <span className="hover:text-orange-600 text-sm sm:text-lg">
+                u/{Post.user.username}
+              </span>
+            </Link>
+          </div>
+        </CardFooter>
       </Card>
     </div>
   );

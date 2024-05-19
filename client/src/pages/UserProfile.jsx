@@ -11,7 +11,7 @@ export default function UserProfile() {
   const navig = useNavigate();
   const params = useParams();
   const [about, setAbout] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [admin, setAdmin] = useState("");
   const [postLoad, setPostLoad] = useState(false);
@@ -56,7 +56,7 @@ export default function UserProfile() {
         </div>
       )}
       {!loading && (
-        <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent pt-4 px-2">
+        <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent pt-4 px-2 ">
           <div>
             <Card className=" h-[250px] border-none shadow-none">
               <div className="flex w-full bg-cover h-[150px] border-x-8 border-t-8 rounded-lg border-transparent">
@@ -108,7 +108,7 @@ export default function UserProfile() {
               {
                 posts.length===0 && <p className="font-bold">This User has no posts</p>
               }
-              {!postLoad && <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent">
+              {!postLoad && <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent w-full">
                 <div className="w-full">
                   {posts.map((element) => {
                     return <Postcard key={element._id} Post={element} />;
