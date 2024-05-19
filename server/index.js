@@ -33,6 +33,6 @@ app.use((err,req,res,next) =>{
         message
     });
 });
-app.listen(3431,()=>{
+app.listen(process.env.Port || 5000,()=>{
     console.log('server running on port 3431');
 });
