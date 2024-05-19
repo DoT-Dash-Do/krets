@@ -127,7 +127,7 @@ export const Postcard = ({ Post }) => {
                   <DialogHeader>
                     <DialogTitle>Shareable-Link</DialogTitle>
                     <DialogDescription>
-                      <Input value={`http://localhost:5173/post/${Post._id}`} />
+                      <Input value={`https://krets-alpha.vercel.app/post/${Post._id}`} />
                     </DialogDescription>
                   </DialogHeader>
                 </DialogContent>

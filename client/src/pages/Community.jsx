@@ -165,7 +165,7 @@ export default function Community() {
                     className=" text-black dark:text-white bg-tranperant shadow-none rounded-md py-1"
                     disabled
                   >
-                    unfollow
+                    ...
                   </Button>
                 )}
               </CardContent>

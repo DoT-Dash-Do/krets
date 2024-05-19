@@ -234,7 +234,7 @@ export const SinglePost = () => {
                         <DialogTitle>Shareable-Link</DialogTitle>
                         <DialogDescription>
                           <Input
-                            value={`http://localhost:5173/post/${Post._id}`}
+                            value={`https://krets-alpha.vercel.app/post/${Post._id}`}
                           />
                         </DialogDescription>
                       </DialogHeader>
