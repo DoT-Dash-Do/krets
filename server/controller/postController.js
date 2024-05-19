@@ -133,10 +133,10 @@ export const likePost = async (req, res, next) => {
     });
     const post = await Post.findByIdAndUpdate(
       postId,
-      { $inc: { totalComments: 1 } },
+      { $inc: { totalLikes: 1 } },
       { new: true }
     );
-    res.status(201).json({ message: "post liked" });
+    res.status(201).json(post);
   } catch (error) {
     next(errorHandler(404, "server not responding"));
   }
@@ -151,9 +151,10 @@ export const dislikePost = async (req, res, next) => {
     });
     const post = await Post.findByIdAndUpdate(
       postId,
-      { $inc: { totalComments: -1 } },
+      { $inc: { totalLikes: -1 } },
       { new: true }
     );
+    console.log(post);
     res.status(201).json(post);
   } catch (error) {
     next(errorHandler(404, "server not responding"));

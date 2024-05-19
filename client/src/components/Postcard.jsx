@@ -58,10 +58,13 @@ export const Postcard = ({ Post }) => {
           {Post.media.length != 0 && (
             <Carousel className="">
               <CarouselContent className="">
-                {Post.media.map((element) => {
+                {Post.media.map((element, index) => {
                   if (element.Type.startsWith("image/"))
                     return (
-                      <CarouselItem className="flex justify-center items-center">
+                      <CarouselItem
+                        className="flex justify-center items-center"
+                        key={index}
+                      >
                         <img
                           src={element.Link}
                           className="object-cover md:max-h-[300px]"
@@ -70,7 +73,10 @@ export const Postcard = ({ Post }) => {
                     );
                   else {
                     return (
-                      <CarouselItem className="flex justify-center items-center">
+                      <CarouselItem
+                        className="flex justify-center items-center"
+                        key={index}
+                      >
                         <video
                           className="md:max-h-[300px]"
                           controls
@@ -93,17 +99,29 @@ export const Postcard = ({ Post }) => {
         <CardFooter className="bg-grey flex justify-between">
           <div className="flex gap-1 sm:gap-4 sm:w-1/2 justify-between">
             <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer text-sm sm:text-xl">
-              <PlugsConnected className="hover:text-orange-600" size={32} onClick={()=>{navig(`/post/${Post._id}`)}} />
+              <PlugsConnected
+                className="hover:text-orange-600"
+                size={32}
+                onClick={() => {
+                  navig(`/post/${Post._id}`);
+                }}
+              />
               <p>{Post.totalLikes}</p>
             </div>
             <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer">
-              <ChatCentered size={32} onClick={()=>{navig(`/post/${Post._id}`)}} className="hover:text-orange-600" />
+              <ChatCentered
+                size={32}
+                onClick={() => {
+                  navig(`/post/${Post._id}`);
+                }}
+                className="hover:text-orange-600"
+              />
               <p className="text-sm sm:text-xl">{Post.totalComments}</p>
             </div>
             <div className="flex items-center absolute top-9 right-4 sm:relative sm:top-0 sm:right-0">
               <Dialog>
                 <DialogTrigger className="text-center">
-                  <ShareFat size={32} className="hover:text-orange-600"/>
+                  <ShareFat size={32} className="hover:text-orange-600" />
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>

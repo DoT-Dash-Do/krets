@@ -40,7 +40,7 @@ export default function UpdateUser() {
   const [error, setError] = useState("");
   const [avatarFile, setAvatarFile] = useState();
   const [coverFile, setCoverFile] = useState();
-  const [load, setLoad] = useState(true);
+  const [load, setLoad] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
     Name: currentUser.rest.Name,

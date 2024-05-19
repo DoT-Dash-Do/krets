@@ -40,7 +40,7 @@ import { Button } from "@/components/ui/button";
 export const SinglePost = () => {
   const navig = useNavigate();
   const params = useParams();
-  const [Post, setPost] = useState({});
+  const [Post, setPost] = useState();
   const [Comments, setComments] = useState();
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState("");
@@ -72,7 +72,7 @@ export const SinglePost = () => {
     const token = window.localStorage.getItem("token");
     try {
       setLoad(true);
-      await axios.post(`${serverlink}/post/likePost`, {
+      const response = await axios.post(`${serverlink}/post/likePost`, {
         token,
         postId: params.id,
       });
@@ -195,7 +195,6 @@ export const SinglePost = () => {
                       size={32}
                       onClick={unlikePost}
                     />
-                    <p>{Post.totalLikes}</p>
                   </div>
                 )}
                 {
@@ -205,7 +204,6 @@ export const SinglePost = () => {
                     size={32}
                     disabled
                   />
-                  <p>{Post.totalLikes}</p>
                 </div>)
                 }
                 {!load && !like && (
@@ -215,7 +213,6 @@ export const SinglePost = () => {
                       size={32}
                       onClick={likePost}
                     />
-                    <p>{Post.totalLikes}</p>
                   </div>
                 )}
                 <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer">
@@ -226,7 +223,6 @@ export const SinglePost = () => {
                     }}
                     className="hover:text-orange-600"
                   />
-                  <p className="text-sm sm:text-xl">{Post.totalComments}</p>
                 </div>
                 <div className="flex items-center absolute top-9 right-4 sm:relative sm:top-0 sm:right-0">
                   <Dialog>

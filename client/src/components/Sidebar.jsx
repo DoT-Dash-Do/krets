@@ -9,8 +9,10 @@ export default function Sidebar() {
   const navig = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const [result, setResult] = useState([]);
+  const[loading,setLoading] = useState(true);
   const getCommunityData = async () => {
     try {
+      setLoading(true);
       if (!currentUser) {
         const response = await axios(
           `${serverlink}/community/getTenCommunities`
@@ -24,14 +26,21 @@ export default function Sidebar() {
         );
         setResult(response.data);
       }
+      setLoading(false)
     } catch (error) {
       console.log(error.response.data.message);
+      setLoading(false);
     }
   };
   useEffect(() => {
     getCommunityData();
   }, []);
-  return (
+  useEffect(() => {
+    getCommunityData();
+  }, [currentUser]);
+  return (<>
+    {loading && <div>...</div>}
+    {!loading &&
     <div className="flex-col flex items-center w-[300px] border-r h-full overflow-auto bg-white dark:bg-black">
       <div className="flex flex-col border-b w-11/12 py-2">
         {currentUser && (
@@ -69,7 +78,7 @@ export default function Sidebar() {
               <div
                 className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-lg cursor-pointer select-none"
                 key={index}
-                onClick={() => {navig(`/community/${element._id}`)}}
+                onClick={() => {navig(`/community/${element?._id}`)}}
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage
@@ -77,7 +86,7 @@ export default function Sidebar() {
                   />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <p className="text-sm">k/{element.communityName}</p>
+                <p className="text-sm">k/{element?.communityName}</p>
               </div>
             );
           })}
@@ -90,20 +99,21 @@ export default function Sidebar() {
               <div
                 className="flex items-center gap-2 hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-lg cursor-pointer select-none"
                 key={index}
-                onClick={() => {navig(`/community/${element.community._id}`)}}
+                onClick={() => {navig(`/community/${element.community?._id}`)}}
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage
-                    src={element.community.avatar === "" ? "/klogo.png" : element.community.avatar}
+                    src={element?.community?.avatar === "" ? "/klogo.png" : element?.community?.avatar}
                   />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <p className="text-sm">k/{element.community.communityName}</p>
+                <p className="text-sm">k/{element.community?.communityName}</p>
               </div>
             );
           })}
         </div>
       )}
-    </div>
+    </div>}
+    </>
   );
 }
