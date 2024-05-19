@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { House, Fire, PlusSquare } from "@phosphor-icons/react";
-import { useSelector } from "react-redux";
+import { House, Fire, PlusSquare, MagnifyingGlass, CurrencyEth } from "@phosphor-icons/react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { serverlink } from "@/link";
+import { LogOut } from "lucide-react";
+import { signOutStart,signOutSuccess } from "@/redux/user/userSlice";
 export default function Sidebar() {
   const navig = useNavigate();
+  const Dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const [result, setResult] = useState([]);
   const[loading,setLoading] = useState(true);
@@ -38,8 +41,18 @@ export default function Sidebar() {
   useEffect(() => {
     getCommunityData();
   }, [currentUser]);
+  const signOutMain = () => {
+    try {
+      Dispatch(signOutStart());
+      window.localStorage.removeItem("token");
+      Dispatch(signOutSuccess());
+      navig("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (<>
-    {loading && <div>...</div>}
+    {loading && <div className="flex-col flex items-center w-[300px] border-r h-full overflow-auto bg-white dark:bg-black">...</div>}
     {!loading &&
     <div className="flex-col flex items-center w-[300px] border-r h-full overflow-auto bg-white dark:bg-black">
       <div className="flex flex-col border-b w-11/12 py-2">
@@ -113,6 +126,22 @@ export default function Sidebar() {
           })}
         </div>
       )}
+      <div className="flex flex-col border-b w-11/12 py-2">
+        <Link
+          to="/search/Post/-"
+          className="flex items-start w-full gap-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+        >
+          <MagnifyingGlass size={24} />
+          search
+        </Link>
+        {currentUser && <button
+          onClick={signOutMain}
+          className="flex items-start w-full gap-2 p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg"
+        >
+          <LogOut size={24} />
+          Logout
+        </button>}
+      </div>
     </div>}
     </>
   );

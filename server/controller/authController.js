@@ -22,7 +22,7 @@ export const signup = async (req, res, next) => {
               <h2 style="text-align: center; color: #333;">Email Verification</h2>
               <p style="text-align: left; color: #333;">Dear User,</p>
               <p style="text-align: left; color: #333;">Welcome to our platform! To complete your registration, please click the link below to verify your email address:</p>
-              <p style="text-align: center; margin-top: 30px;"><a href="http://localhost:3431/api/auth/verify-mail/${verifyLink}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;">Verify Email</a></p>
+              <p style="text-align: center; margin-top: 30px;"><a href="https://krets.onrender.com/api/auth/verify-mail/${verifyLink}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;">Verify Email</a></p>
               <p style="text-align: left; color: #333;">If you didn't sign up for our platform, you can ignore this email.</p>
               <p style="text-align: left; color: #333;">Thanks,<br> krets</p>
           </div>

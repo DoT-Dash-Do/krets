@@ -1,1 +1,1 @@
-export const serverlink = "http://localhost:5000/api";
+export const serverlink = "https://krets.onrender.com/api";
