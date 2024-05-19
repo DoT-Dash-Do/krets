@@ -142,6 +142,7 @@ export const Search = () => {
                   </div>
                 )}
                 {users.map((element) => {
+                  if(element.verified === true)
                   return (
                     <Card className="bg-gray-200 dark:bg-gray-900 h-[150px] border-none shadow-none">
                       <div className="flex w-full bg-cover h-[80px] border-x-8 border-t-8 rounded-lg dark:border-gray-900">
