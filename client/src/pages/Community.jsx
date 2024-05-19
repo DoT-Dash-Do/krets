@@ -119,7 +119,7 @@ export default function Community() {
         </div>
       )}
       {!loading && (
-        <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent pt-4 px-2 mb-2">
+        <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent pt-4 px-2 mb-2 w-full">
           <div>
             <Card className="w-full h-[250px] border-none shadow-none">
               <div className="flex w-full bg-cover h-[150px] border-x-8 border-t-8 rounded-lg border-transparent">
