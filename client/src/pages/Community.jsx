@@ -260,10 +260,10 @@ export default function Community() {
                     )}
                   </div>
                 </CardContent>
-                <CardContent>
+                <CardContent className="">
                   <CardTitle>Meet the creator</CardTitle>
                   <div
-                    className="bg-gray-200 dark:bg-gray-900 max-w-[200px] rounded-lg p-2 flex items-center gap-2 mt-1"
+                    className="bg-gray-200 dark:bg-gray-900 w-fit rounded-lg p-2 flex items-center gap-2 mt-1"
                     onClick={() => {
                       navig(`/user/${admin._id}`);
                     }}
@@ -274,7 +274,7 @@ export default function Community() {
                         u/
                       </AvatarFallback>
                     </Avatar>
-                    <p className="text-xl font-bold">
+                    <p className="text-xl font-bold truncate">
                       {about.admin && about.admin.username}
                     </p>
                   </div>
