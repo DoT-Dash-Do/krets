@@ -261,7 +261,7 @@ export default function Login() {
               </CardContent>
               <CardContent>
                 <CardDescription className="">
-                  <Link to="/">Forgot Password?</Link>
+                  <Link to="/">Go back to home</Link>
                 </CardDescription>
               </CardContent>
               <CardFooter>
