@@ -101,13 +101,13 @@ export default function UserPostAndCommunity() {
               Your Communities
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="Posts">
+          <TabsContent value="Posts" className="w-full">
             {!postLoad && (
-              <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent">
+              <div className="flex flex-col items-center xl:border-0 border-x-8 border-col border-transparent w-full">
                 <div className="w-full">
                   {posts.map((element) => {
                     return (
-                      <div className="relative flex flex-col items-center">
+                      <div className="relative flex flex-col items-center w-full">
                         <Postcard key={element._id} Post={element} />
                         <Button
                           className="absolute top-8 right-4 p-1 w-10"
@@ -126,12 +126,12 @@ export default function UserPostAndCommunity() {
           </TabsContent>
           <TabsContent
             value="Communities"
-            className="px-2 flex flex-col items-center gap-2"
+            className="px-2 flex flex-col items-center gap-2 w-full"
           >
             {communities.length > 0 &&
               communities.map((element) => {
                 return (
-                  <Card className="bg-gray-200 dark:bg-gray-900 h-[150px] border-none shadow-none">
+                  <Card className="bg-gray-200 dark:bg-gray-900 h-[150px] border-none shadow-none w-full">
                     <div className="flex w-full bg-cover h-[80px] border-x-8 border-t-8 rounded-lg dark:border-gray-900">
                       <img
                         src={element.cover || "/Combg.png"}
@@ -143,7 +143,7 @@ export default function UserPostAndCommunity() {
                       <div className="flex items-center gap-2">
                         <Avatar className=" bg-gray-900 h-14 w-14 border-2" onClick={()=>{navig(`/community/${element._id}`)}}>
                           <AvatarImage
-                            src={element.Avatar || "/klogo.png"}
+                            src={element.avatar || "/klogo.png"}
                             alt="PFP"
                           />
                           <AvatarFallback className="Dark:bg-white text-orange-600 font-bold">

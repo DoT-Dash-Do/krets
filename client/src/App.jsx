@@ -51,7 +51,7 @@ function App() {
       setView("flex justify-center w-full");
       setSide("hidden lg:block");
       setSugg(
-        "hidden xl:block mx-4 mt-4 w-[300px] dark:text-white max-h-screen overflow-auto style-3"
+        "hidden xl:block mx-4 mt-2 w-[300px] dark:text-white max-h-screen overflow-auto style-3"
       );
       setMain(" w-full xl:w-full xl:max-w-[700px] overflow-auto style-3");
     }
