@@ -30,7 +30,7 @@ export const htmlResponse = `
       </head>
       <body>
         <h1>Your email is now verified</h1>
-        <a href="http://localhost:5173/">
+        <a href="https://krets-alpha.vercel.app/login">
         <button class="button">Continue</button>
         </a>
       </body>
