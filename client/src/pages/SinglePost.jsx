@@ -59,6 +59,7 @@ export const SinglePost = () => {
         postId: params.id,
         comment: comment,
       });
+      setComment("");
       const response = await axios(
         `${serverlink}/post/getComments/${params.id}`
       );
