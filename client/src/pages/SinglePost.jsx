@@ -23,7 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
+import ReactPlayer from "react-player";
 import {
   PlugsConnected,
   ChatCentered,
@@ -48,10 +48,9 @@ export const SinglePost = () => {
   const [load, setLoad] = useState(false);
   const postComment = async () => {
     const token = window.localStorage.getItem("token");
-    if(!comment.trim())
-      {
-        return;
-      }
+    if (!comment.trim()) {
+      return;
+    }
     try {
       setLoad(true);
       await axios.post(`${serverlink}/post/postComment`, {
@@ -149,6 +148,20 @@ export const SinglePost = () => {
               <p className="text-wrap text-xs font-bold">{Post.title}</p>
             </CardContent>
             <CardContent className="">
+              {Post.description != "" &&
+                Post.media.length === 0 &&
+                typeof Post.description === "string" &&
+                Post.description.includes("https://") &&
+                Post.description.includes("you") && (
+                  <div className="flex items-center h-[400px] w-full justify-center">
+                    <ReactPlayer
+                      url={Post.description}
+                      width="90%"
+                      height="100%"
+                      controls
+                    />
+                  </div>
+                )}
               {Post.description != "" && Post.media.length === 0 && (
                 <CardDescription>{Post.description}</CardDescription>
               )}
@@ -198,15 +211,15 @@ export const SinglePost = () => {
                     />
                   </div>
                 )}
-                {
-                  load && (<div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer text-sm sm:text-xl">
-                  <Plugs
-                    className="hover:text-orange-600"
-                    size={32}
-                    disabled
-                  />
-                </div>)
-                }
+                {load && (
+                  <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer text-sm sm:text-xl">
+                    <Plugs
+                      className="hover:text-orange-600"
+                      size={32}
+                      disabled
+                    />
+                  </div>
+                )}
                 {!load && !like && (
                   <div className="flex items-center hover:bg-slate-200 dark:hover:bg-black p-2 rounded-lg select-none cursor-pointer text-sm sm:text-xl">
                     <Plugs

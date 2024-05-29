@@ -22,12 +22,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
+import ReactPlayer from "react-player";
 import { PlugsConnected, ChatCentered, ShareFat } from "@phosphor-icons/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate, Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 export const Postcard = ({ Post }) => {
+  console.log(Post.description.includes("youtube.com"));
   const navig = useNavigate();
   return (
     <div className="border-b w-full py-2 relative">
@@ -51,7 +52,20 @@ export const Postcard = ({ Post }) => {
         <CardContent>
           <p className="text-wrap text-xs font-bold">{Post.title}</p>
         </CardContent>
-        <CardContent className="">
+        <CardContent className="flex items-center flex-col w-full">
+          {Post.description != "" &&
+            Post.media.length === 0 &&
+            typeof Post.description === "string" &&
+            Post.description.includes("https://") && Post.description.includes("you") && (
+            <div className="flex items-center h-[400px] w-full justify-center">
+              <ReactPlayer
+                url={Post.description}
+                width="90%"
+                height="100%"
+                controls
+              />
+            </div>   
+            )}
           {Post.description != "" && Post.media.length === 0 && (
             <CardDescription>{Post.description}</CardDescription>
           )}
@@ -127,7 +141,9 @@ export const Postcard = ({ Post }) => {
                   <DialogHeader>
                     <DialogTitle>Shareable-Link</DialogTitle>
                     <DialogDescription>
-                      <Input value={`https://krets-alpha.vercel.app/post/${Post._id}`} />
+                      <Input
+                        value={`https://krets-alpha.vercel.app/post/${Post._id}`}
+                      />
                     </DialogDescription>
                   </DialogHeader>
                 </DialogContent>
