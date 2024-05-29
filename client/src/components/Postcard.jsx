@@ -52,7 +52,7 @@ export const Postcard = ({ Post }) => {
         <CardContent>
           <p className="text-wrap text-xs font-bold">{Post.title}</p>
         </CardContent>
-        <CardContent className="flex items-center flex-col w-full">
+        <CardContent className="flex flex-col ">
           {Post.description != "" &&
             Post.media.length === 0 &&
             typeof Post.description === "string" &&
